@@ -1,4 +1,7 @@
 ## Version Control System
+Version control, also known as source control, is the practice of tracking and managing changes to software code.
+
+## Version Control System
 - We use VCSs to collaborate as a team of programmars, track changes, do code review and much more...
 - This can be of 2 types
 	- Distributed VCS
