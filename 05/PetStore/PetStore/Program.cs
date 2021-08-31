@@ -28,11 +28,15 @@ namespace PetStore
              string name = Console.ReadLine();
              UpdatCatName(conString, id, name);
              GetCats(conString);*/
-
-            Console.Write("PLease enter the Id of the cat which you want to delete ");
+            string conStr = @"Data Source=DESKTOP-BUPJUKQ\SQLEXPRESS;Initial Catalog=PetDB;Integrated Security=True";
+            
+            GetCats(conStr);
+            Console.Write("PLease enter the Id of the cat whose name is to be changed ");
             int id = Int32.Parse(Console.ReadLine());
-            string s = @"Data Source=DESKTOP-NOPJF0S\SQLEXPRESS;Initial Catalog=petDB;Integrated Security=True";
-            DeleteCatId(s,id);
+            Console.Write("Please enter the updated name of the cat ");
+            string name = Console.ReadLine();
+            UpdateCatName_Disconnected(conStr,id,name);
+            GetCats(conStr);
         }
 
         private static void GetCats(string conString, string query= "SELECT Id, Name from Cats")
@@ -66,7 +70,14 @@ namespace PetStore
             ConnectedArchitecture.DeleteCatById(conStr, out connection, out command, id);
 
         }
+        private static void UpdateCatName_Disconnected(string conStr,int id,string name)
+        {
+            SqlConnection connection;
+            SqlDataAdapter da;
+            DataSet ds;
+            DisconnectedArchitecture.UpdateCats(conStr,id,name,out connection,out da,out ds);
 
+        }
         private static void GetCatsDisconnected(string conStr, string query="select Id, Name from Cats") {
             SqlConnection connection;
             SqlDataAdapter adapter;
