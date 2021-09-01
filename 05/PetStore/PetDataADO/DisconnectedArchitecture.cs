@@ -28,6 +28,11 @@ namespace PetDataADO
 
         public static void UpdateCats(string conStr, int id,string name, out SqlConnection connection, out SqlDataAdapter da, out DataSet ds)
         {
+            Console.Write("PLease enter the Id of the cat whose name is to be changed ");
+            id = Int32.Parse(Console.ReadLine());
+            Console.Write("Please enter the updated name of the cat ");
+            name = Console.ReadLine();
+
             using (connection = new SqlConnection(conStr))
             {
                 string query = "Select * from Cats";
@@ -41,7 +46,7 @@ namespace PetDataADO
                 {
                     if (Convert.ToInt32(row["Id"]) ==id)
                     {
-                        dt.Rows[0]["Name"] = name;
+                        row["Name"] = name;
                     }
                 }
                 try

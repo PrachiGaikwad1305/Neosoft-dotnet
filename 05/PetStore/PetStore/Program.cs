@@ -3,7 +3,6 @@ using PetLib;
 using System.Data.SqlClient;
 using PetDataADO;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.UserSecrets;
 using System.Data;
 
 namespace PetStore
@@ -12,31 +11,18 @@ namespace PetStore
     {
         static void Main(string[] args) // entry point
         {
-            /*var config = new ConfigurationBuilder()
+            var config = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
                 .AddJsonFile("appSettings.json")
                 .Build();
 
             string conString = config.GetConnectionString("PetDb");
-            GetCatsDisconnected(conString);*/
-            /*
-             GetCats(conString);
 
-             Console.Write("PLease enter the Id of the cat whose name is to be changed ");
-             int id = Int32.Parse(Console.ReadLine());
-             Console.Write("Please enter the updated name of the cat ");
-             string name = Console.ReadLine();
-             UpdatCatName(conString, id, name);
-             GetCats(conString);*/
-            string conStr = @"Data Source=DESKTOP-BUPJUKQ\SQLEXPRESS;Initial Catalog=PetDB;Integrated Security=True";
-            
-            GetCats(conStr);
-            Console.Write("PLease enter the Id of the cat whose name is to be changed ");
-            int id = Int32.Parse(Console.ReadLine());
-            Console.Write("Please enter the updated name of the cat ");
-            string name = Console.ReadLine();
-            UpdateCatName_Disconnected(conStr,id,name);
-            GetCats(conStr);
+            GetCats(conString);
+            int id = 0;
+            string name = "";
+            UpdateCatName_Disconnected(conString,id,name);
+            GetCats(conString);
         }
 
         private static void GetCats(string conString, string query= "SELECT Id, Name from Cats")
@@ -55,11 +41,11 @@ namespace PetStore
                 throw;
             }
         }
-        private static void UpdatCatName(string conStr, int id, string name)
-        {
+        private static void UpdatCatName(string conString, int id, string name)
+        { 
             SqlConnection connection;
             SqlCommand command;
-            ConnectedArchitecture.UpdateCatNameById(conStr, out connection, out command, id, name);
+            ConnectedArchitecture.UpdateCatNameById(conString, out connection, out command, id, name);
 
         }
 

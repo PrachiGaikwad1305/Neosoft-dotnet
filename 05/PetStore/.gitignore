@@ -1,1 +1,3 @@
+.gitignore
+/PetStore/appSettings.json
 appSettings.json
